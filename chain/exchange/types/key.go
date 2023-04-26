@@ -37,6 +37,7 @@ var (
 	OrderbookSequencePrefix              = []byte{0x0a} // prefix for each key to a market's orderbook sequence
 	SubaccountMarketVolumePrefix         = []byte{0x0b} // prefix for each key to the aggregate volume for a subaccount in a market
 	MarketVolumePrefix                   = []byte{0x0c} // prefix for each key to the aggregate volume for a market
+	ParamsKey                            = []byte{0x0d} // prefix for module params
 
 	DenomDecimalsPrefix              = []byte{0x10} // prefix for denom decimals
 	SpotMarketsPrefix                = []byte{0x11} // prefix for each key to a spot market by (isEnabled, marketID)

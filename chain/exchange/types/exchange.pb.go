@@ -8,8 +8,8 @@ import (
 	types1 "github.com/InjectiveLabs/sdk-go/chain/oracle/types"
 	github_com_cosmos_cosmos_sdk_types "github.com/cosmos/cosmos-sdk/types"
 	types "github.com/cosmos/cosmos-sdk/types"
-	_ "github.com/gogo/protobuf/gogoproto"
-	proto "github.com/gogo/protobuf/proto"
+	_ "github.com/cosmos/gogoproto/gogoproto"
+	proto "github.com/cosmos/gogoproto/proto"
 	io "io"
 	math "math"
 	math_bits "math/bits"
@@ -228,53 +228,75 @@ func (OrderMask) EnumDescriptor() ([]byte, []int) {
 }
 
 type Params struct {
-	// spot_market_instant_listing_fee defines the expedited fee in INJ required to create a spot market by bypassing governance
+	// spot_market_instant_listing_fee defines the expedited fee in INJ required
+	// to create a spot market by bypassing governance
 	SpotMarketInstantListingFee types.Coin `protobuf:"bytes,1,opt,name=spot_market_instant_listing_fee,json=spotMarketInstantListingFee,proto3" json:"spot_market_instant_listing_fee"`
-	// derivative_market_instant_listing_fee defines the expedited fee in INJ required to create a derivative market by bypassing governance
+	// derivative_market_instant_listing_fee defines the expedited fee in INJ
+	// required to create a derivative market by bypassing governance
 	DerivativeMarketInstantListingFee types.Coin `protobuf:"bytes,2,opt,name=derivative_market_instant_listing_fee,json=derivativeMarketInstantListingFee,proto3" json:"derivative_market_instant_listing_fee"`
-	// default_spot_maker_fee defines the default exchange trade fee for makers on a spot market
+	// default_spot_maker_fee defines the default exchange trade fee for makers on
+	// a spot market
 	DefaultSpotMakerFeeRate github_com_cosmos_cosmos_sdk_types.Dec `protobuf:"bytes,3,opt,name=default_spot_maker_fee_rate,json=defaultSpotMakerFeeRate,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Dec" json:"default_spot_maker_fee_rate"`
-	// default_spot_taker_fee_rate defines the default exchange trade fee rate for takers on a new spot market
+	// default_spot_taker_fee_rate defines the default exchange trade fee rate for
+	// takers on a new spot market
 	DefaultSpotTakerFeeRate github_com_cosmos_cosmos_sdk_types.Dec `protobuf:"bytes,4,opt,name=default_spot_taker_fee_rate,json=defaultSpotTakerFeeRate,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Dec" json:"default_spot_taker_fee_rate"`
-	// default_derivative_maker_fee defines the default exchange trade fee for makers on a new derivative market
+	// default_derivative_maker_fee defines the default exchange trade fee for
+	// makers on a new derivative market
 	DefaultDerivativeMakerFeeRate github_com_cosmos_cosmos_sdk_types.Dec `protobuf:"bytes,5,opt,name=default_derivative_maker_fee_rate,json=defaultDerivativeMakerFeeRate,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Dec" json:"default_derivative_maker_fee_rate"`
-	// default_derivative_taker_fee defines the default exchange trade fee for takers on a new derivative market
+	// default_derivative_taker_fee defines the default exchange trade fee for
+	// takers on a new derivative market
 	DefaultDerivativeTakerFeeRate github_com_cosmos_cosmos_sdk_types.Dec `protobuf:"bytes,6,opt,name=default_derivative_taker_fee_rate,json=defaultDerivativeTakerFeeRate,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Dec" json:"default_derivative_taker_fee_rate"`
-	// default_initial_margin_ratio defines the default initial margin ratio on a new derivative market
+	// default_initial_margin_ratio defines the default initial margin ratio on a
+	// new derivative market
 	DefaultInitialMarginRatio github_com_cosmos_cosmos_sdk_types.Dec `protobuf:"bytes,7,opt,name=default_initial_margin_ratio,json=defaultInitialMarginRatio,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Dec" json:"default_initial_margin_ratio"`
-	// default_maintenance_margin_ratio defines the default maintenance margin ratio on a new derivative market
+	// default_maintenance_margin_ratio defines the default maintenance margin
+	// ratio on a new derivative market
 	DefaultMaintenanceMarginRatio github_com_cosmos_cosmos_sdk_types.Dec `protobuf:"bytes,8,opt,name=default_maintenance_margin_ratio,json=defaultMaintenanceMarginRatio,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Dec" json:"default_maintenance_margin_ratio"`
-	// default_funding_interval defines the default funding interval on a derivative market
+	// default_funding_interval defines the default funding interval on a
+	// derivative market
 	DefaultFundingInterval int64 `protobuf:"varint,9,opt,name=default_funding_interval,json=defaultFundingInterval,proto3" json:"default_funding_interval,omitempty"`
-	// funding_multiple defines the timestamp multiple that the funding timestamp should be a multiple of
+	// funding_multiple defines the timestamp multiple that the funding timestamp
+	// should be a multiple of
 	FundingMultiple int64 `protobuf:"varint,10,opt,name=funding_multiple,json=fundingMultiple,proto3" json:"funding_multiple,omitempty"`
-	// relayer_fee_share_rate defines the trade fee share percentage that goes to relayers
+	// relayer_fee_share_rate defines the trade fee share percentage that goes to
+	// relayers
 	RelayerFeeShareRate github_com_cosmos_cosmos_sdk_types.Dec `protobuf:"bytes,11,opt,name=relayer_fee_share_rate,json=relayerFeeShareRate,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Dec" json:"relayer_fee_share_rate"`
-	// default_hourly_funding_rate_cap defines the default maximum absolute value of the hourly funding rate
+	// default_hourly_funding_rate_cap defines the default maximum absolute value
+	// of the hourly funding rate
 	DefaultHourlyFundingRateCap github_com_cosmos_cosmos_sdk_types.Dec `protobuf:"bytes,12,opt,name=default_hourly_funding_rate_cap,json=defaultHourlyFundingRateCap,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Dec" json:"default_hourly_funding_rate_cap"`
 	// hourly_interest_rate defines the hourly interest rate
 	DefaultHourlyInterestRate github_com_cosmos_cosmos_sdk_types.Dec `protobuf:"bytes,13,opt,name=default_hourly_interest_rate,json=defaultHourlyInterestRate,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Dec" json:"default_hourly_interest_rate"`
-	// max_derivative_order_side_count defines the maximum number of derivative active orders a subaccount can have for a given orderbook side
+	// max_derivative_order_side_count defines the maximum number of derivative
+	// active orders a subaccount can have for a given orderbook side
 	MaxDerivativeOrderSideCount uint32 `protobuf:"varint,14,opt,name=max_derivative_order_side_count,json=maxDerivativeOrderSideCount,proto3" json:"max_derivative_order_side_count,omitempty"`
-	// inj_reward_staked_requirement_threshold defines the threshold on INJ rewards after which one also needs staked INJ to receive more
+	// inj_reward_staked_requirement_threshold defines the threshold on INJ
+	// rewards after which one also needs staked INJ to receive more
 	InjRewardStakedRequirementThreshold github_com_cosmos_cosmos_sdk_types.Int `protobuf:"bytes,15,opt,name=inj_reward_staked_requirement_threshold,json=injRewardStakedRequirementThreshold,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Int" json:"inj_reward_staked_requirement_threshold"`
-	// the trading_rewards_vesting_duration defines the vesting times for trading rewards
+	// the trading_rewards_vesting_duration defines the vesting times for trading
+	// rewards
 	TradingRewardsVestingDuration int64 `protobuf:"varint,16,opt,name=trading_rewards_vesting_duration,json=tradingRewardsVestingDuration,proto3" json:"trading_rewards_vesting_duration,omitempty"`
-	// liquidator_reward_share_rate defines the ratio of the split of the surplus collateral that goes to the liquidator
+	// liquidator_reward_share_rate defines the ratio of the split of the surplus
+	// collateral that goes to the liquidator
 	LiquidatorRewardShareRate github_com_cosmos_cosmos_sdk_types.Dec `protobuf:"bytes,17,opt,name=liquidator_reward_share_rate,json=liquidatorRewardShareRate,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Dec" json:"liquidator_reward_share_rate"`
-	// binary_options_market_instant_listing_fee defines the expedited fee in INJ required to create a derivative market by bypassing governance
+	// binary_options_market_instant_listing_fee defines the expedited fee in INJ
+	// required to create a derivative market by bypassing governance
 	BinaryOptionsMarketInstantListingFee types.Coin `protobuf:"bytes,18,opt,name=binary_options_market_instant_listing_fee,json=binaryOptionsMarketInstantListingFee,proto3" json:"binary_options_market_instant_listing_fee"`
-	// atomic_market_order_access_level defines the required access permissions for executing atomic market orders
+	// atomic_market_order_access_level defines the required access permissions
+	// for executing atomic market orders
 	AtomicMarketOrderAccessLevel AtomicMarketOrderAccessLevel `protobuf:"varint,19,opt,name=atomic_market_order_access_level,json=atomicMarketOrderAccessLevel,proto3,enum=injective.exchange.v1beta1.AtomicMarketOrderAccessLevel" json:"atomic_market_order_access_level,omitempty"`
-	// spot_atomic_market_order_fee_multiplier defines the default multiplier for executing atomic market orders in spot markets
+	// spot_atomic_market_order_fee_multiplier defines the default multiplier for
+	// executing atomic market orders in spot markets
 	SpotAtomicMarketOrderFeeMultiplier github_com_cosmos_cosmos_sdk_types.Dec `protobuf:"bytes,20,opt,name=spot_atomic_market_order_fee_multiplier,json=spotAtomicMarketOrderFeeMultiplier,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Dec" json:"spot_atomic_market_order_fee_multiplier"`
-	// derivative_atomic_market_order_fee_multiplier defines the default multiplier for executing atomic market orders in derivative markets
+	// derivative_atomic_market_order_fee_multiplier defines the default
+	// multiplier for executing atomic market orders in derivative markets
 	DerivativeAtomicMarketOrderFeeMultiplier github_com_cosmos_cosmos_sdk_types.Dec `protobuf:"bytes,21,opt,name=derivative_atomic_market_order_fee_multiplier,json=derivativeAtomicMarketOrderFeeMultiplier,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Dec" json:"derivative_atomic_market_order_fee_multiplier"`
-	// binary_options_atomic_market_order_fee_multiplier defines the default multiplier for executing atomic market orders in binary markets
+	// binary_options_atomic_market_order_fee_multiplier defines the default
+	// multiplier for executing atomic market orders in binary markets
 	BinaryOptionsAtomicMarketOrderFeeMultiplier github_com_cosmos_cosmos_sdk_types.Dec `protobuf:"bytes,22,opt,name=binary_options_atomic_market_order_fee_multiplier,json=binaryOptionsAtomicMarketOrderFeeMultiplier,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Dec" json:"binary_options_atomic_market_order_fee_multiplier"`
 	// minimal_protocol_fee_rate defines the minimal protocol fee rate
 	MinimalProtocolFeeRate github_com_cosmos_cosmos_sdk_types.Dec `protobuf:"bytes,23,opt,name=minimal_protocol_fee_rate,json=minimalProtocolFeeRate,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Dec" json:"minimal_protocol_fee_rate"`
-	// is_instant_derivative_market_launch_enabled defines whether instant derivative market launch is enabled
+	// is_instant_derivative_market_launch_enabled defines whether instant
+	// derivative market launch is enabled
 	IsInstantDerivativeMarketLaunchEnabled bool `protobuf:"varint,24,opt,name=is_instant_derivative_market_launch_enabled,json=isInstantDerivativeMarketLaunchEnabled,proto3" json:"is_instant_derivative_market_launch_enabled,omitempty"`
 }
 
@@ -428,23 +450,29 @@ type DerivativeMarket struct {
 	QuoteDenom string `protobuf:"bytes,6,opt,name=quote_denom,json=quoteDenom,proto3" json:"quote_denom,omitempty"`
 	// Unique market ID.
 	MarketId string `protobuf:"bytes,7,opt,name=market_id,json=marketId,proto3" json:"market_id,omitempty"`
-	// initial_margin_ratio defines the initial margin ratio of a derivative market
+	// initial_margin_ratio defines the initial margin ratio of a derivative
+	// market
 	InitialMarginRatio github_com_cosmos_cosmos_sdk_types.Dec `protobuf:"bytes,8,opt,name=initial_margin_ratio,json=initialMarginRatio,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Dec" json:"initial_margin_ratio"`
-	// maintenance_margin_ratio defines the maintenance margin ratio of a derivative market
+	// maintenance_margin_ratio defines the maintenance margin ratio of a
+	// derivative market
 	MaintenanceMarginRatio github_com_cosmos_cosmos_sdk_types.Dec `protobuf:"bytes,9,opt,name=maintenance_margin_ratio,json=maintenanceMarginRatio,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Dec" json:"maintenance_margin_ratio"`
 	// maker_fee_rate defines the maker fee rate of a derivative market
 	MakerFeeRate github_com_cosmos_cosmos_sdk_types.Dec `protobuf:"bytes,10,opt,name=maker_fee_rate,json=makerFeeRate,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Dec" json:"maker_fee_rate"`
 	// taker_fee_rate defines the taker fee rate of a derivative market
 	TakerFeeRate github_com_cosmos_cosmos_sdk_types.Dec `protobuf:"bytes,11,opt,name=taker_fee_rate,json=takerFeeRate,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Dec" json:"taker_fee_rate"`
-	// relayer_fee_share_rate defines the percentage of the transaction fee shared with the relayer in a derivative market
+	// relayer_fee_share_rate defines the percentage of the transaction fee shared
+	// with the relayer in a derivative market
 	RelayerFeeShareRate github_com_cosmos_cosmos_sdk_types.Dec `protobuf:"bytes,12,opt,name=relayer_fee_share_rate,json=relayerFeeShareRate,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Dec" json:"relayer_fee_share_rate"`
-	// true if the market is a perpetual market. false if the market is an expiry futures market
+	// true if the market is a perpetual market. false if the market is an expiry
+	// futures market
 	IsPerpetual bool `protobuf:"varint,13,opt,name=isPerpetual,proto3" json:"isPerpetual,omitempty"`
 	// Status of the market
 	Status MarketStatus `protobuf:"varint,14,opt,name=status,proto3,enum=injective.exchange.v1beta1.MarketStatus" json:"status,omitempty"`
-	// min_price_tick_size defines the minimum tick size that the price and margin required for orders in the market
+	// min_price_tick_size defines the minimum tick size that the price and margin
+	// required for orders in the market
 	MinPriceTickSize github_com_cosmos_cosmos_sdk_types.Dec `protobuf:"bytes,15,opt,name=min_price_tick_size,json=minPriceTickSize,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Dec" json:"min_price_tick_size"`
-	// min_quantity_tick_size defines the minimum tick size of the quantity required for orders in the market
+	// min_quantity_tick_size defines the minimum tick size of the quantity
+	// required for orders in the market
 	MinQuantityTickSize github_com_cosmos_cosmos_sdk_types.Dec `protobuf:"bytes,16,opt,name=min_quantity_tick_size,json=minQuantityTickSize,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Dec" json:"min_quantity_tick_size"`
 }
 
@@ -507,13 +535,16 @@ type BinaryOptionsMarket struct {
 	MakerFeeRate github_com_cosmos_cosmos_sdk_types.Dec `protobuf:"bytes,11,opt,name=maker_fee_rate,json=makerFeeRate,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Dec" json:"maker_fee_rate"`
 	// taker_fee_rate defines the taker fee rate of a derivative market
 	TakerFeeRate github_com_cosmos_cosmos_sdk_types.Dec `protobuf:"bytes,12,opt,name=taker_fee_rate,json=takerFeeRate,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Dec" json:"taker_fee_rate"`
-	// relayer_fee_share_rate defines the percentage of the transaction fee shared with the relayer in a derivative market
+	// relayer_fee_share_rate defines the percentage of the transaction fee shared
+	// with the relayer in a derivative market
 	RelayerFeeShareRate github_com_cosmos_cosmos_sdk_types.Dec `protobuf:"bytes,13,opt,name=relayer_fee_share_rate,json=relayerFeeShareRate,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Dec" json:"relayer_fee_share_rate"`
 	// Status of the market
 	Status MarketStatus `protobuf:"varint,14,opt,name=status,proto3,enum=injective.exchange.v1beta1.MarketStatus" json:"status,omitempty"`
-	// min_price_tick_size defines the minimum tick size that the price and margin required for orders in the market
+	// min_price_tick_size defines the minimum tick size that the price and margin
+	// required for orders in the market
 	MinPriceTickSize github_com_cosmos_cosmos_sdk_types.Dec `protobuf:"bytes,15,opt,name=min_price_tick_size,json=minPriceTickSize,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Dec" json:"min_price_tick_size"`
-	// min_quantity_tick_size defines the minimum tick size of the quantity required for orders in the market
+	// min_quantity_tick_size defines the minimum tick size of the quantity
+	// required for orders in the market
 	MinQuantityTickSize github_com_cosmos_cosmos_sdk_types.Dec  `protobuf:"bytes,16,opt,name=min_quantity_tick_size,json=minQuantityTickSize,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Dec" json:"min_quantity_tick_size"`
 	SettlementPrice     *github_com_cosmos_cosmos_sdk_types.Dec `protobuf:"bytes,17,opt,name=settlement_price,json=settlementPrice,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Dec" json:"settlement_price,omitempty"`
 }
@@ -554,13 +585,17 @@ var xxx_messageInfo_BinaryOptionsMarket proto.InternalMessageInfo
 type ExpiryFuturesMarketInfo struct {
 	// market ID.
 	MarketId string `protobuf:"bytes,1,opt,name=market_id,json=marketId,proto3" json:"market_id,omitempty"`
-	// expiration_timestamp defines the expiration time for a time expiry futures market.
+	// expiration_timestamp defines the expiration time for a time expiry futures
+	// market.
 	ExpirationTimestamp int64 `protobuf:"varint,2,opt,name=expiration_timestamp,json=expirationTimestamp,proto3" json:"expiration_timestamp,omitempty"`
-	// expiration_twap_start_timestamp defines the start time of the TWAP calculation window
+	// expiration_twap_start_timestamp defines the start time of the TWAP
+	// calculation window
 	TwapStartTimestamp int64 `protobuf:"varint,3,opt,name=twap_start_timestamp,json=twapStartTimestamp,proto3" json:"twap_start_timestamp,omitempty"`
-	// expiration_twap_start_price_cumulative defines the cumulative price for the start of the TWAP window
+	// expiration_twap_start_price_cumulative defines the cumulative price for the
+	// start of the TWAP window
 	ExpirationTwapStartPriceCumulative github_com_cosmos_cosmos_sdk_types.Dec `protobuf:"bytes,4,opt,name=expiration_twap_start_price_cumulative,json=expirationTwapStartPriceCumulative,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Dec" json:"expiration_twap_start_price_cumulative"`
-	// settlement_price defines the settlement price for a time expiry futures market.
+	// settlement_price defines the settlement price for a time expiry futures
+	// market.
 	SettlementPrice github_com_cosmos_cosmos_sdk_types.Dec `protobuf:"bytes,5,opt,name=settlement_price,json=settlementPrice,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Dec" json:"settlement_price"`
 }
 
@@ -621,13 +656,16 @@ func (m *ExpiryFuturesMarketInfo) GetTwapStartTimestamp() int64 {
 type PerpetualMarketInfo struct {
 	// market ID.
 	MarketId string `protobuf:"bytes,1,opt,name=market_id,json=marketId,proto3" json:"market_id,omitempty"`
-	// hourly_funding_rate_cap defines the maximum absolute value of the hourly funding rate
+	// hourly_funding_rate_cap defines the maximum absolute value of the hourly
+	// funding rate
 	HourlyFundingRateCap github_com_cosmos_cosmos_sdk_types.Dec `protobuf:"bytes,2,opt,name=hourly_funding_rate_cap,json=hourlyFundingRateCap,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Dec" json:"hourly_funding_rate_cap"`
 	// hourly_interest_rate defines the hourly interest rate
 	HourlyInterestRate github_com_cosmos_cosmos_sdk_types.Dec `protobuf:"bytes,3,opt,name=hourly_interest_rate,json=hourlyInterestRate,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Dec" json:"hourly_interest_rate"`
-	// next_funding_timestamp defines the next funding timestamp in seconds of a perpetual market
+	// next_funding_timestamp defines the next funding timestamp in seconds of a
+	// perpetual market
 	NextFundingTimestamp int64 `protobuf:"varint,4,opt,name=next_funding_timestamp,json=nextFundingTimestamp,proto3" json:"next_funding_timestamp,omitempty"`
-	// funding_interval defines the next funding interval in seconds of a perpetual market.
+	// funding_interval defines the next funding interval in seconds of a
+	// perpetual market.
 	FundingInterval int64 `protobuf:"varint,5,opt,name=funding_interval,json=fundingInterval,proto3" json:"funding_interval,omitempty"`
 }
 
@@ -688,7 +726,8 @@ func (m *PerpetualMarketInfo) GetFundingInterval() int64 {
 type PerpetualMarketFunding struct {
 	// cumulative_funding defines the cumulative funding of a perpetual market.
 	CumulativeFunding github_com_cosmos_cosmos_sdk_types.Dec `protobuf:"bytes,1,opt,name=cumulative_funding,json=cumulativeFunding,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Dec" json:"cumulative_funding"`
-	// cumulative_price defines the cumulative price for the current hour up to the last timestamp
+	// cumulative_price defines the cumulative price for the current hour up to
+	// the last timestamp
 	CumulativePrice github_com_cosmos_cosmos_sdk_types.Dec `protobuf:"bytes,2,opt,name=cumulative_price,json=cumulativePrice,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Dec" json:"cumulative_price"`
 	LastTimestamp   int64                                  `protobuf:"varint,3,opt,name=last_timestamp,json=lastTimestamp,proto3" json:"last_timestamp,omitempty"`
 }
@@ -868,7 +907,8 @@ var xxx_messageInfo_MidPriceAndTOB proto.InternalMessageInfo
 
 // An object describing trade pair of two assets.
 type SpotMarket struct {
-	// A name of the pair in format AAA/BBB, where AAA is base asset, BBB is quote asset.
+	// A name of the pair in format AAA/BBB, where AAA is base asset, BBB is quote
+	// asset.
 	Ticker string `protobuf:"bytes,1,opt,name=ticker,proto3" json:"ticker,omitempty"`
 	// Coin denom used for the base asset
 	BaseDenom string `protobuf:"bytes,2,opt,name=base_denom,json=baseDenom,proto3" json:"base_denom,omitempty"`
@@ -878,15 +918,18 @@ type SpotMarket struct {
 	MakerFeeRate github_com_cosmos_cosmos_sdk_types.Dec `protobuf:"bytes,4,opt,name=maker_fee_rate,json=makerFeeRate,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Dec" json:"maker_fee_rate"`
 	// taker_fee_rate defines the fee percentage takers pay when trading
 	TakerFeeRate github_com_cosmos_cosmos_sdk_types.Dec `protobuf:"bytes,5,opt,name=taker_fee_rate,json=takerFeeRate,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Dec" json:"taker_fee_rate"`
-	// relayer_fee_share_rate defines the percentage of the transaction fee shared with the relayer in a derivative market
+	// relayer_fee_share_rate defines the percentage of the transaction fee shared
+	// with the relayer in a derivative market
 	RelayerFeeShareRate github_com_cosmos_cosmos_sdk_types.Dec `protobuf:"bytes,6,opt,name=relayer_fee_share_rate,json=relayerFeeShareRate,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Dec" json:"relayer_fee_share_rate"`
 	// Unique market ID.
 	MarketId string `protobuf:"bytes,7,opt,name=market_id,json=marketId,proto3" json:"market_id,omitempty"`
 	// Status of the market
 	Status MarketStatus `protobuf:"varint,8,opt,name=status,proto3,enum=injective.exchange.v1beta1.MarketStatus" json:"status,omitempty"`
-	// min_price_tick_size defines the minimum tick size that the price required for orders in the market
+	// min_price_tick_size defines the minimum tick size that the price required
+	// for orders in the market
 	MinPriceTickSize github_com_cosmos_cosmos_sdk_types.Dec `protobuf:"bytes,9,opt,name=min_price_tick_size,json=minPriceTickSize,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Dec" json:"min_price_tick_size"`
-	// min_quantity_tick_size defines the minimum tick size of the quantity required for orders in the market
+	// min_quantity_tick_size defines the minimum tick size of the quantity
+	// required for orders in the market
 	MinQuantityTickSize github_com_cosmos_cosmos_sdk_types.Dec `protobuf:"bytes,10,opt,name=min_quantity_tick_size,json=minQuantityTickSize,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Dec" json:"min_quantity_tick_size"`
 }
 
@@ -1367,9 +1410,11 @@ func (m *DerivativeOrder) GetOrderType() OrderType {
 type SubaccountOrderbookMetadata struct {
 	VanillaLimitOrderCount    uint32 `protobuf:"varint,1,opt,name=vanilla_limit_order_count,json=vanillaLimitOrderCount,proto3" json:"vanilla_limit_order_count,omitempty"`
 	ReduceOnlyLimitOrderCount uint32 `protobuf:"varint,2,opt,name=reduce_only_limit_order_count,json=reduceOnlyLimitOrderCount,proto3" json:"reduce_only_limit_order_count,omitempty"`
-	// AggregateReduceOnlyQuantity is the aggregate fillable quantity of the subaccount's reduce-only limit orders in the given direction.
+	// AggregateReduceOnlyQuantity is the aggregate fillable quantity of the
+	// subaccount's reduce-only limit orders in the given direction.
 	AggregateReduceOnlyQuantity github_com_cosmos_cosmos_sdk_types.Dec `protobuf:"bytes,3,opt,name=aggregate_reduce_only_quantity,json=aggregateReduceOnlyQuantity,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Dec" json:"aggregate_reduce_only_quantity"`
-	// AggregateVanillaQuantity is the aggregate fillable quantity of the subaccount's vanilla limit orders in the given direction.
+	// AggregateVanillaQuantity is the aggregate fillable quantity of the
+	// subaccount's vanilla limit orders in the given direction.
 	AggregateVanillaQuantity        github_com_cosmos_cosmos_sdk_types.Dec `protobuf:"bytes,4,opt,name=aggregate_vanilla_quantity,json=aggregateVanillaQuantity,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Dec" json:"aggregate_vanilla_quantity"`
 	VanillaConditionalOrderCount    uint32                                 `protobuf:"varint,5,opt,name=vanilla_conditional_order_count,json=vanillaConditionalOrderCount,proto3" json:"vanilla_conditional_order_count,omitempty"`
 	ReduceOnlyConditionalOrderCount uint32                                 `protobuf:"varint,6,opt,name=reduce_only_conditional_order_count,json=reduceOnlyConditionalOrderCount,proto3" json:"reduce_only_conditional_order_count,omitempty"`
@@ -2218,7 +2263,8 @@ func (m *TradingRewardCampaignBoostInfo) GetDerivativeMarketMultipliers() []Poin
 
 type CampaignRewardPool struct {
 	StartTimestamp int64 `protobuf:"varint,1,opt,name=start_timestamp,json=startTimestamp,proto3" json:"start_timestamp,omitempty"`
-	// max_campaign_rewards are the maximum reward amounts to be disbursed at the end of the campaign
+	// max_campaign_rewards are the maximum reward amounts to be disbursed at the
+	// end of the campaign
 	MaxCampaignRewards github_com_cosmos_cosmos_sdk_types.Coins `protobuf:"bytes,2,rep,name=max_campaign_rewards,json=maxCampaignRewards,proto3,castrepeated=github.com/cosmos/cosmos-sdk/types.Coins" json:"max_campaign_rewards"`
 }
 
@@ -2384,11 +2430,13 @@ var xxx_messageInfo_FeeDiscountTierInfo proto.InternalMessageInfo
 type FeeDiscountSchedule struct {
 	BucketCount    uint64 `protobuf:"varint,1,opt,name=bucket_count,json=bucketCount,proto3" json:"bucket_count,omitempty"`
 	BucketDuration int64  `protobuf:"varint,2,opt,name=bucket_duration,json=bucketDuration,proto3" json:"bucket_duration,omitempty"`
-	// the trading fee quote denoms which will be counted for the fee paid contribution
+	// the trading fee quote denoms which will be counted for the fee paid
+	// contribution
 	QuoteDenoms []string `protobuf:"bytes,3,rep,name=quote_denoms,json=quoteDenoms,proto3" json:"quote_denoms,omitempty"`
 	// the fee discount tiers
 	TierInfos []*FeeDiscountTierInfo `protobuf:"bytes,4,rep,name=tier_infos,json=tierInfos,proto3" json:"tier_infos,omitempty"`
-	// the marketIDs which are disqualified from contributing to the fee paid amount
+	// the marketIDs which are disqualified from contributing to the fee paid
+	// amount
 	DisqualifiedMarketIds []string `protobuf:"bytes,5,rep,name=disqualified_market_ids,json=disqualifiedMarketIds,proto3" json:"disqualified_market_ids,omitempty"`
 }
 
